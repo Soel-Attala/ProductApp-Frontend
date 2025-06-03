@@ -1,0 +1,23 @@
+
+.main {
+    width: 100%;
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding: 2rem;
+    box-sizing: border-box;
+    position: relative;
+    background: linear-gradient(to bottom right, #e0f7fa, #b2ebf2); 
+}
+
+
+.content {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #ffffffdd; 
+}

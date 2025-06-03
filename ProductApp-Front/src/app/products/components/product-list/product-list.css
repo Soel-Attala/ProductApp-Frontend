@@ -1,0 +1,36 @@
+table {
+    width: 100%;
+    background-color: #f1fafe; /* fondo celeste muy claro para la tabla */
+    border-radius: 6px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+/* Encabezados */
+th {
+    background-color: #b2ebf2;
+    color: #003344;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Celdas */
+td {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+/* Botones Edit/Delete */
+button {
+    background-color: #03a9f4;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #00a6ff;
+}

@@ -6,15 +6,20 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ConfirmationDialog } from '../confirmation-dialog/confirmation-dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-product-list',
-  imports: [CommonModule,MatTableModule,MatPaginatorModule, MatButtonModule],
+  imports: [CommonModule,MatTableModule,MatPaginatorModule, MatButtonModule, MatDialogModule],
   templateUrl: './product-list.html',
   styleUrl: './product-list.css'
 })
 export class ProductList implements OnInit{
+private dialog = inject(MatDialog);
 private router = inject(Router);
 private productService = inject(ProductService);
+private snackBar = inject(MatSnackBar);
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
 products: WritableSignal<Product[]> = signal<Product[]>([]);
@@ -60,7 +65,23 @@ const path = id? `/products/edit/${id}` : '/products/new';
 this.router.navigate([path]);
 }
 
-deleteProduct(id?:number){
+deleteProduct(id:number){
+
+  const dialogRef = this.dialog.open(ConfirmationDialog);
+  dialogRef.afterClosed().subscribe((result)=>{
+    if(result){
+      this.productService.deleteProduct(id).subscribe(()=>{
+        const updateProducts = this.products().filter((product)=>product.id !== id);
+        this.products.set(updateProducts);
+        this.updateTableData();
+
+          
+          this.snackBar.open('Product deleted succsessfully!', 'Close',{
+            duration: 3000
+          });
+      });
+    }
+  })
 
 }
 }

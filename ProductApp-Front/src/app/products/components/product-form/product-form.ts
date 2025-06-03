@@ -74,11 +74,13 @@ export class ProductForm {
         },
         error: (err) => console.error(err)
       });
+      
+
     } else {
       delete productData.id;
       this.productService.createProducts(productData).subscribe({
-        next: () => {
-          this.snackBar.open('Product created successfully', 'Close', {
+        next: ()=>{
+          this.snackBar.open('Product load succsessfully!', 'Close',{
             duration: 3000
           });
           this.router.navigate(['/']);
@@ -88,3 +90,5 @@ export class ProductForm {
     }
   }
 }
+
+
