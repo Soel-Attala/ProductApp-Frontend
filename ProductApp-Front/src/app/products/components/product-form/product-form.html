@@ -1,1 +1,23 @@
-<p>product-form works!</p>
+<mat-card>
+    <h2>{{isEditMode ? 'Edit Product' : 'New Product'}}</h2>
+
+    <form[formGroup] = "productForm" (ngSubmit) = "onSubmit()">
+
+    <mat-form-field class="full-width">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName = "Name" required/>
+    <mat-error *ngIf="productForm.get('Name')?.invalid">
+        Name is required (max 50 characters)
+    </mat-error>    
+    
+    </mat-form-field>
+
+    <div class="form-actions">
+        <button mat-raised-button color="warn" type="submit" [disabled]="productForm.invalid">
+            {{isEditMode ? 'Save Changes' : 'Add Product'}}
+            Cancel
+        </button>
+    </div>
+
+    </form>
+</mat-card>

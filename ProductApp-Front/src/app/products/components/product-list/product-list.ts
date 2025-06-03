@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, signal, ViewChild, viewChild, WritableSignal } from '@angular/core';
+import { Component, Inject, inject, OnInit, signal, ViewChild, viewChild, WritableSignal } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../interfaces/products';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   imports: [CommonModule,MatTableModule,MatPaginatorModule, MatButtonModule],
@@ -12,6 +13,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './product-list.css'
 })
 export class ProductList implements OnInit{
+private router = inject(Router);
 private productService = inject(ProductService);
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -54,7 +56,8 @@ updateTableData(){
 }
 
 navigateToForm(id?:number){
-
+const path = id? `/products/edit/${id}` : '/products/new';
+this.router.navigate([path]);
 }
 
 deleteProduct(id?:number){
