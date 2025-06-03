@@ -1,5 +1,5 @@
 export const environment ={
     production: true,
-    apiUrl: 'https://api.vi.com/api/products'
+    apiUrl: 'https://localhost:7226/api/products'
 
 }
