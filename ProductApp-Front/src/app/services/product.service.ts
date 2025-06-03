@@ -25,10 +25,10 @@ export class ProductService {
   }
 
   updateProduct(id: number, product: Partial<Product>): Observable<Product>{
-    return this.http.post<Product>(`${this.apiUrl}${id}`,product);
+    return this.http.post<Product>(`${this.apiUrl}/${id}`,product);
   }
 
   deleteProduct(id:number):Observable<void>{
-    return this.http.delete<void>(`${this.apiUrl},${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
