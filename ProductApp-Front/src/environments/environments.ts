@@ -1,5 +1,5 @@
 export const environment ={
     production: false,
-    apiUrl: 'https://localhost:7226/api/products'
+    apiUrl: 'https://appproductos-angular-net9-2.onrender.com/'
 
 }
